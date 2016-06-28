@@ -1,0 +1,7 @@
+New log file opened at Tue Jun 28 14:28:42 CLT 2016 by 90807@wp-115-116.dcc.uchile.cl
+Taking next connection to: 57120
+New client attempting to connect on port: 57121-57120
+  Address = /10.0.115.116:57120
+This client on port 57121 has uuid 2d075cea-e4b3-4680-bab6-5c91990978d7 configName play-fork-run humanReadableName Play Fork Run protocolVersion 1 featureTags Vector()
+Connected Clients: play-fork-run-2d075cea-e4b3-4680-bab6-5c91990978d7
+Taking next connection to: 57120
