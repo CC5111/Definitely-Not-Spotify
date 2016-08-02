@@ -1,6 +1,7 @@
 package models.persistence
 
-import models.entities.Supplier
+
+import models.entities.{Songs, Supplier}
 import play.api.Play
 import play.api.db.slick.{DatabaseConfigProvider, HasDatabaseConfig}
 import slick.driver.JdbcProfile
@@ -14,7 +15,7 @@ object SlickTables extends HasDatabaseConfig[JdbcProfile] {
   import dbConfig.driver.api._
 
   abstract class BaseTable[T](tag: Tag, name: String) extends Table[T](tag, name) {
-    def id = column[Long]("id", O.PrimaryKey, O.AutoInc)
+    def id = column[Long]("ID", O.PrimaryKey, O.AutoInc)
   }
 
   case class SimpleSupplier(name: String, desc: String)
@@ -25,6 +26,16 @@ object SlickTables extends HasDatabaseConfig[JdbcProfile] {
     def * = (id, name, desc) <> (Supplier.tupled, Supplier.unapply)
   }
 
+  class SongsTable(tag: Tag) extends BaseTable[Songs](tag, "SONGS") {
+    def title = column[String]("TITLE")
+    def artist = column[String]("ARTIST")
+    def album = column[String]("ALBUM")
+    def route = column[String]("ROUTE")
+    def * = (id, title, artist,album,route) <> (Songs.tupled, Songs.unapply)
+  }
+
+
   val suppliersTableQ : TableQuery[SuppliersTable] = TableQuery[SuppliersTable]
+  val songsTableQ : TableQuery[SongsTable] = TableQuery[SongsTable]
 
 }

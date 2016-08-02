@@ -1,8 +1,8 @@
 package models.daos
 
-import models.entities.{Supplier, BaseEntity}
+import models.entities.{Supplier,Songs, BaseEntity}
 import models.persistence.SlickTables
-import models.persistence.SlickTables.{SuppliersTable, BaseTable}
+import models.persistence.SlickTables.{SuppliersTable,SongsTable ,BaseTable}
 import play.api.Play
 import play.api.db.slick.{DatabaseConfigProvider, HasDatabaseConfig}
 import slick.backend.DatabaseConfig
