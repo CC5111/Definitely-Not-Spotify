@@ -8154,3 +8154,66 @@ UPDATE TEST SET ROUTE='songs/DschinghisKhan.mp3' WHERE ID=1 [42102-192]
 org.h2.jdbc.JdbcSQLException: Error de Sintaxis en sentencia SQL "SELECT * FRM[*] SONGS "
 Syntax error in SQL statement "SELECT * FRM[*] SONGS "; SQL statement:
 select * frm Songs [42000-192]
+2016-08-05 12:01:26 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Error de Sintaxis en sentencia SQL "CREATE TABLE PLAYLIST(ID INT PRIMARY KEY,
+   NAME VARCHAR(100), FOREIGN KEY GENRE[*] REFERENCES GENRE(ID) )"; se esperaba "("
+Syntax error in SQL statement "CREATE TABLE PLAYLIST(ID INT PRIMARY KEY,
+   NAME VARCHAR(100), FOREIGN KEY GENRE[*] REFERENCES GENRE(ID) )"; expected "("; SQL statement:
+CREATE TABLE PLAYLIST(ID INT PRIMARY KEY,
+   NAME VARCHAR(100), FOREIGN KEY GENRE REFERENCES GENRE(ID) ) [42001-192]
+2016-08-05 12:01:48 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Error de Sintaxis en sentencia SQL "CREATE TABLE PLAYLIST(ID INT PRIMARY KEY,
+   NAME VARCHAR(100), FOREIGN KEY GENRE[*] REFERENCES GENRE(ID))"; se esperaba "("
+Syntax error in SQL statement "CREATE TABLE PLAYLIST(ID INT PRIMARY KEY,
+   NAME VARCHAR(100), FOREIGN KEY GENRE[*] REFERENCES GENRE(ID))"; expected "("; SQL statement:
+CREATE TABLE PLAYLIST(ID INT PRIMARY KEY,
+   NAME VARCHAR(100), FOREIGN KEY GENRE REFERENCES GENRE(ID)) [42001-192]
+2016-08-05 12:03:13 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Error de Sintaxis en sentencia SQL "CREATE TABLE PLAYLIST(ID INT PRIMARY KEY,
+   NAME VARCHAR(100), FOREIGN KEY GENRE[*] REFERENCES GENRE(ID))"; se esperaba "("
+Syntax error in SQL statement "CREATE TABLE PLAYLIST(ID INT PRIMARY KEY,
+   NAME VARCHAR(100), FOREIGN KEY GENRE[*] REFERENCES GENRE(ID))"; expected "("; SQL statement:
+CREATE TABLE PLAYLIST(ID INT PRIMARY KEY,
+   NAME VARCHAR(100), FOREIGN KEY GENRE REFERENCES GENRE(ID)) [42001-192]
+2016-08-05 12:03:30 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Error de Sintaxis en sentencia SQL "CREATE TABLE PLAYLIST(ID INT PRIMARY KEY,
+   NAME VARCHAR(100), FOREIGN KEY GENRE[*] REFERENCES GENRE(ID))"; se esperaba "("
+Syntax error in SQL statement "CREATE TABLE PLAYLIST(ID INT PRIMARY KEY,
+   NAME VARCHAR(100), FOREIGN KEY GENRE[*] REFERENCES GENRE(ID))"; expected "("; SQL statement:
+CREATE TABLE PLAYLIST(ID INT PRIMARY KEY,
+   NAME VARCHAR(100), FOREIGN KEY GENRE REFERENCES GENRE(ID)) [42001-192]
+2016-08-05 12:03:54 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Error de Sintaxis en sentencia SQL "DROP PLAYLIST[*] IF EXISTS TEST"; se esperaba "TABLE, INDEX, USER, SEQUENCE, CONSTANT, TRIGGER, VIEW, ROLE, ALIAS, SCHEMA, ALL, DOMAIN, TYPE, DATATYPE, AGGREGATE"
+Syntax error in SQL statement "DROP PLAYLIST[*] IF EXISTS TEST"; expected "TABLE, INDEX, USER, SEQUENCE, CONSTANT, TRIGGER, VIEW, ROLE, ALIAS, SCHEMA, ALL, DOMAIN, TYPE, DATATYPE, AGGREGATE"; SQL statement:
+DROP PLAYLIST IF EXISTS TEST [42001-192]
+2016-08-05 12:06:11 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Error de Sintaxis en sentencia SQL "CREATE TABLE PLAYLIST(ID INT PRIMARY KEY, NAME  VARCHAR(100),  FOREIGN KEY GENRE[*] REFERENCES GENRE(ID) )"; se esperaba "("
+Syntax error in SQL statement "CREATE TABLE PLAYLIST(ID INT PRIMARY KEY, NAME  VARCHAR(100),  FOREIGN KEY GENRE[*] REFERENCES GENRE(ID) )"; expected "("; SQL statement:
+CREATE TABLE PLAYLIST(ID INT PRIMARY KEY, NAME  VARCHAR(100),  FOREIGN KEY GENRE REFERENCES GENRE(ID) ) [42001-192]
+2016-08-05 12:06:31 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Columna "GENRE" no encontrada
+Column "GENRE" not found; SQL statement:
+CREATE TABLE PLAYLIST(ID INT PRIMARY KEY, NAME  VARCHAR(100),  FOREIGN KEY (GENRE) REFERENCES GENRE(ID) ) [42122-192]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.table.Table.getColumn(Table.java:682)
+	at org.h2.table.IndexColumn.mapColumns(IndexColumn.java:74)
+	at org.h2.command.ddl.AlterTableAddConstraint.tryUpdate(AlterTableAddConstraint.java:208)
+	at org.h2.command.ddl.AlterTableAddConstraint.update(AlterTableAddConstraint.java:77)
+	at org.h2.command.ddl.CreateTable.update(CreateTable.java:176)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:98)
+	at org.h2.command.Command.executeUpdate(Command.java:258)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:184)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:158)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1388)
+	at org.h2.server.web.WebApp.query(WebApp.java:1061)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1023)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1010)
+	at org.h2.server.web.WebThread.process(WebThread.java:164)
+	at org.h2.server.web.WebThread.run(WebThread.java:89)
+	at java.lang.Thread.run(Thread.java:745)
+2016-08-05 12:09:36 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Error de Sintaxis en sentencia SQL "CREATE TABLE PLAYLISTHASSONG(ID INT PRIMARY KEY, SONG  INT, PLAYLIST INT ,FOREIGN KEY (SONG) REFERENCES SONGS(ID),,[*]FOREIGN KEY (PLAYLIST) REFERENCES PLAYLIST(ID) )"; se esperaba "identifier"
+Syntax error in SQL statement "CREATE TABLE PLAYLISTHASSONG(ID INT PRIMARY KEY, SONG  INT, PLAYLIST INT ,FOREIGN KEY (SONG) REFERENCES SONGS(ID),,[*]FOREIGN KEY (PLAYLIST) REFERENCES PLAYLIST(ID) )"; expected "identifier"; SQL statement:
+CREATE TABLE PLAYLISTHASSONG(ID INT PRIMARY KEY, SONG  INT, PLAYLIST INT ,FOREIGN KEY (SONG) REFERENCES SONGS(ID),,FOREIGN KEY (PLAYLIST) REFERENCES PLAYLIST(ID) ) [42001-192]
