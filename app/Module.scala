@@ -3,9 +3,9 @@ import com.google.inject.{Provides, AbstractModule}
 import java.time.Clock
 
 import models.daos.{AbstractBaseDAO, BaseDAO}
-import models.entities.{Songs, Supplier}
+import models.entities.{Playlist, Songs, Supplier}
 import models.persistence.SlickTables
-import models.persistence.SlickTables.{SongsTable, SuppliersTable}
+import models.persistence.SlickTables.{PlaylistTable, SongsTable, SuppliersTable}
 
 
 /**
@@ -33,6 +33,11 @@ class Module extends AbstractModule {
   @Provides
   def provideSongsDAO : AbstractBaseDAO[SongsTable,Songs] = new BaseDAO[SongsTable,Songs]{
     override protected val tableQ: dbConfig.driver.api.TableQuery[SongsTable] = SlickTables.songsTableQ
+  }
+
+  @Provides
+  def providePlaylistDAO : AbstractBaseDAO[PlaylistTable,Playlist] = new BaseDAO[PlaylistTable,Playlist]{
+    override protected val tableQ: dbConfig.driver.api.TableQuery[PlaylistTable] = SlickTables.playlistTableQ
   }
 
 }

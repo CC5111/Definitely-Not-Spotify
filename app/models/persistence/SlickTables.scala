@@ -34,8 +34,15 @@ object SlickTables extends HasDatabaseConfig[JdbcProfile] {
     def * = (id, title, artist,album,route) <> (Songs.tupled, Songs.unapply)
   }
 
+  class PlaylistTable(tag: Tag) extends BaseTable[Songs](tag, "PLAYLIST") {
+    def name = column[String]("NAME")
+    def genre = column[String]("GENRE")
+    def * = (id, name, genre) <> (Songs.tupled, Songs.unapply)
+  }
+
 
   val suppliersTableQ : TableQuery[SuppliersTable] = TableQuery[SuppliersTable]
   val songsTableQ : TableQuery[SongsTable] = TableQuery[SongsTable]
+  val playlistTableQ : TableQuery[PlaylistTable] = TableQuery[PlaylistTable]
 
 }
