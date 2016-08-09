@@ -43,4 +43,8 @@ class NotSpotifyController @Inject()(songsDAO : AbstractBaseDAO[SongsTable,Songs
    songsDAO.findById(1).map(s => Ok(views.html.reproducesong(s.get.route)))
   }
 
+  def playlist() = {
+    Ok(views.html.playlist())
+  }
+
 }
