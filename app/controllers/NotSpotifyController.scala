@@ -38,12 +38,11 @@ class NotSpotifyController @Inject()(songsDAO : AbstractBaseDAO[SongsTable,Songs
     Ok(views.html.index())
   }
 
-  def showSongs() =
-   Action.async{ implicit request =>
+  def showSongs() = Action.async{ implicit request =>
    songsDAO.findById(1).map(s => Ok(views.html.reproducesong(s.get.route)))
   }
 
-  def playlist() = {
+  def playlist() =Action{ implicit request =>
     Ok(views.html.playlist())
   }
 
