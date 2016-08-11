@@ -5,11 +5,11 @@
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Simple Sidebar - Start Bootstrap Template</title>
+    <title>Bootstrap Double Sidebar</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -30,49 +30,111 @@
 
     <div id="wrapper">
 
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper">
+        <!-- Left Sidebar -->
+        <div id="left-sidebar-wrapper">
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
-                    <a href="#">
-                        Start Bootstrap
-                    </a>
+                    <font color="green">Menu</font>
                 </li>
                 <li>
-                    <a href="#">Dashboard</a>
+                    <a data-toggle="collapse" href="#Search" aria-expanded="false">Search <span class="caret"></span></a>
+                    <div class="collapse sub-bar" id="Search">
+                        <form>
+                            <input size="5" type="text" class="form-control" placeholder="Name song, artist, genre...">
+                        </form>
+                    </div>
                 </li>
                 <li>
-                    <a href="#">Shortcuts</a>
+                    <a data-toggle="collapse" href="#Songs" aria-expanded="false">Songs <span class="caret"></span></a>
+                    <div class="collapse sub-bar" id="Songs">
+                        <a href="#">Duration </a>
+                        <a href="#">Artist </a>
+                        <a data-toggle="collapse" href="#Genre" aria-expanded="false">Genre <span class="caret"></span></a>
+                        <div class="collapse sub-bar" id="Genre">
+                            <a href="#">Rock</a>
+                            <a href="#">Pop</a>
+                        </div>
+                    </div>
                 </li>
                 <li>
-                    <a href="#">Overview</a>
+                    <a data-toggle="collapse" href="#Lists" aria-expanded="false">Lists <span class="caret"></span></a>
+                    <div class="collapse sub-bar" id="Lists">
+                        <a href="#">List1</a>
+                        <a href="#">List2</a>
+                        <a href="#">List3</a>
+                    </div>
                 </li>
                 <li>
-                    <a href="#">Events</a>
-                </li>
-                <li>
-                    <a href="#">About</a>
-                </li>
-                <li>
-                    <a href="#">Services</a>
-                </li>
-                <li>
-                    <a href="#">Contact</a>
+                    <a data-toggle="collapse" href="#Radios" aria-expanded="false">Radios <span class="caret"></span></a>
+                    <div class="collapse sub-bar" id="Radios">
+                        <a href="#">RadioA</a>
+                        <a href="#">RadioB</a>
+                    </div>
                 </li>
             </ul>
         </div>
-        <!-- /#sidebar-wrapper -->
+        <!-- /#left-sidebar-wrapper -->
+
+        <!-- Right Sidebar -->
+        <div id="right-sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">Right Sidebar</a>
+                </li>
+
+                <li>
+                    <a data-toggle="collapse" href="#recent-search" aria-expanded="false">Recent Search <span class="caret"></span></a>
+                    <div class="collapse in sub-bar" id="recent-search">
+                        <a href="#">Keyword 1</a>
+                        <a href="#">Keyword 2</a>
+                        <a href="#">Keyword 3</a>
+                        <a href="#">Keyword 4</a>
+                    </div>
+                </li>
+        </div>
+        <!-- /#right-sidebar-wrapper -->
+
+        <!-- Toggle Buttons -->
+        <a href="#left-menu-toggle" class="btn btn-link btn-md" id="left-menu-toggle"><span class="glyphicon glyphicon-chevron-left"></span></a>
+        <a href="#right-menu-toggle" class="btn btn-link btn-md" id="right-menu-toggle"><span class="glyphicon glyphicon-chevron-right"></span></a>
 
         <!-- Page Content -->
         <div id="page-content-wrapper">
             <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1>Simple Sidebar</h1>
-                        <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
-                        <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
-                        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
+                <div class="row"> <div id="page-content-wrapper">
+                    <div class="container-fluid">
+                        <table class="table table-striped" border="2">
+                            <tr>
+                                <th>#</th>
+                                <th>Canción</th>
+                                <th>Álbum</th>
+                                <th>Artista</th>
+                                <th>Género</th>
+                                <th>Duración</th>
+                                <th>Fecha</th>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>PokeRap</td>
+                                <td>Rattata</td>
+                                <td>Pidgey</td>
+                                <td>Rap(?</td>
+                                <td>Tantos rattatas y pidgeys que existan</td>
+                                <td>Hoy</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Otra</td>
+                                <td>Potatoe</td>
+                                <td>Papa</td>
+                                <td>Si</td>
+                                <td>No</td>
+                                <td>Ayer</td>
+                            </tr>
+                        </table>
                     </div>
+                </div>
+                </div>
                 </div>
             </div>
         </div>
@@ -89,9 +151,14 @@
 
     <!-- Menu Toggle Script -->
     <script>
-    $("#menu-toggle").click(function(e) {
+    $("#left-menu-toggle").click(function(e) {
         e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
+        $("#wrapper").toggleClass("left-toggled");
+    });
+
+    $("#right-menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("right-toggled");
     });
     </script>
 
