@@ -21,6 +21,7 @@ trait AbstractBaseDAO[T,A] {
   def deleteById(id : Long): Future[Int]
   def deleteById(ids : Seq[Long]): Future[Int]
   def deleteByFilter[C : CanBeQueryCondition](f:  (T) => C): Future[Int]
+  def getAllRows() :Future[Seq[A]]
 }
 
 
@@ -55,6 +56,11 @@ abstract class BaseDAO[T <: BaseTable[A], A <: BaseEntity]() extends AbstractBas
 
   def findByFilter[C : CanBeQueryCondition](f: (T) => C): Future[Seq[A]] = {
     db.run(tableQ.withFilter(f).result)
+  }
+
+  def getAllRows() : Future[Seq[A]] = {
+    val query = for(r <- tableQ) yield r
+    db.run(query.result)
   }
 
   def deleteById(id : Long): Future[Int] = {
