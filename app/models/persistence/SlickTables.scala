@@ -1,7 +1,7 @@
 package models.persistence
 
 
-import models.entities.{PlaylistHasSong, Playlist, Songs, Supplier}
+import models.entities._
 import play.api.db.slick.HasDatabaseConfig
 import play.api.Play
 import play.api.db.slick.{DatabaseConfigProvider, HasDatabaseConfig}
@@ -51,9 +51,14 @@ object SlickTables extends HasDatabaseConfig[JdbcProfile] {
     def * = (id, playlist, song) <> (PlaylistHasSong.tupled, PlaylistHasSong.unapply)
   }
 
+  class GenreTable(tag: Tag) extends BaseTable[Genre](tag, "GENRE") {
+    def name = column[String]("NAME")
+    def * = (id, name) <> (Genre.tupled, Genre.unapply)
+  }
+
   val suppliersTableQ : TableQuery[SuppliersTable] = TableQuery[SuppliersTable]
   val songsTableQ : TableQuery[SongsTable] = TableQuery[SongsTable]
   val playlistTableQ : TableQuery[PlaylistTable] = TableQuery[PlaylistTable]
   val playlistHasSongTableQ : TableQuery[PlaylistHasSongTable] = TableQuery[PlaylistHasSongTable]
-
+  val genreTableQ : TableQuery[GenreTable] = TableQuery[GenreTable]
 }

@@ -10,7 +10,7 @@ import javafx.scene.media.Media
 import javax.inject._
 import models.daos.{AbstractBaseDAO, BaseDAO}
 import models.entities.Supplier
-import models.persistence.SlickTables.{PlaylistHasSongTable, PlaylistTable, SongsTable, SuppliersTable}
+import models.persistence.SlickTables.{PlaylistHasSongTable, PlaylistTable, SongsTable, GenreTable}
 import play.api.libs.json.{Json, Writes}
 import play.api.mvc._
 import slick.jdbc.meta.MTable
@@ -33,7 +33,7 @@ import scala.concurrent.duration._
 
 @Singleton
 class NotSpotifyController @Inject()(songsDAO : AbstractBaseDAO[SongsTable,Songs], playlistDAO : AbstractBaseDAO[PlaylistTable,Playlist],
-                                     playlistHasSongDAO : AbstractBaseDAO[PlaylistHasSongTable, PlaylistHasSong]) (implicit ec: ExecutionContext) extends Controller {
+                                     playlistHasSongDAO : AbstractBaseDAO[PlaylistHasSongTable, PlaylistHasSong] , genreDAO:AbstractBaseDAO[GenreTable, Genre] ) (implicit ec: ExecutionContext) extends Controller {
   def root() = Action{ implicit request =>
     Ok(views.html.index())
   }
