@@ -26,10 +26,14 @@ import scala.concurrent.duration._
 
 @Singleton
 class PlayListController @Inject()(playlistDAO : AbstractBaseDAO[PlaylistTable,Playlist],
-                                     playlistHasSongDAO : AbstractBaseDAO[PlaylistHasSongTable, PlaylistHasSong] , genreDAO:AbstractBaseDAO[GenreTable, Genre] ) (implicit ec: ExecutionContext) extends Controller {
-
+                                   playlistHasSongDAO : AbstractBaseDAO[PlaylistHasSongTable, PlaylistHasSong],
+                                   genreDAO:AbstractBaseDAO[GenreTable, Genre]) (implicit ec: ExecutionContext) extends Controller {
 
   def playlist() =Action{ implicit request =>
+    Ok(views.html.playlist())
+  }
+
+  def selectPlaylist(id: Long) = Action{ implicit request =>
     Ok(views.html.playlist())
   }
 
