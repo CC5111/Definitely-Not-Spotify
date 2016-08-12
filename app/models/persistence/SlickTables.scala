@@ -2,9 +2,8 @@ package models.persistence
 
 
 import models.entities.{Playlist, Songs, Supplier}
-import play.api.Play
-import play.api.db.slick.{DatabaseConfigProvider, HasDatabaseConfig}
-import slick.driver.JdbcProfile
+
+import scala.reflect.internal.util.NoPosition
 
 /**
   * The companion object.
@@ -42,6 +41,11 @@ object SlickTables extends HasDatabaseConfig[JdbcProfile] {
     def * = (id, name, genre) <> (Playlist.tupled, Playlist.unapply)
   }
 
+  class PlaylistHasSongTable(tag: Tag) extends BaseTable[PlaylistHasSong](tag, "PLAYLISTHASSONG") {
+    def playlist = column[Long]("PLAYLIST")
+    def song = column[Long]("SONG")
+    def * = (id, playlist, song) <> (PlaylistHasSong.tupled, PlaylistHasSong.unapply)
+  }
 
   val suppliersTableQ : TableQuery[SuppliersTable] = TableQuery[SuppliersTable]
   val songsTableQ : TableQuery[SongsTable] = TableQuery[SongsTable]
