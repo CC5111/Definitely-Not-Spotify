@@ -4,7 +4,7 @@ package controllers
 import javax.inject.{Inject, Singleton}
 
 import models.daos.AbstractBaseDAO
-import models.persistence.SlickTables.{SongsTable}
+import models.persistence.SlickTables.{GenreTable, PlaylistHasSongTable, PlaylistTable, SongsTable}
 import play.api.mvc._
 import slick.jdbc.meta.MTable
 import slick.lifted.TableQuery
@@ -25,9 +25,12 @@ import play.api.Play.current
 import scala.concurrent.duration._
 
 @Singleton
-class SongsController @Inject()(songsDAO : AbstractBaseDAO[SongsTable,Songs]) (implicit ec: ExecutionContext) extends Controller {
+class PlayListController @Inject()(playlistDAO : AbstractBaseDAO[PlaylistTable,Playlist],
+                                     playlistHasSongDAO : AbstractBaseDAO[PlaylistHasSongTable, PlaylistHasSong] , genreDAO:AbstractBaseDAO[GenreTable, Genre] ) (implicit ec: ExecutionContext) extends Controller {
 
-  def reproduceSong() = Action.async{ implicit request =>
-    songsDAO.findById(1).map(s => Ok(views.html.reproducesong(s.get.route)))
+
+  def playlist() =Action{ implicit request =>
+    Ok(views.html.playlist())
   }
+
 }

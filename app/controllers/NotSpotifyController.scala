@@ -32,18 +32,9 @@ import play.api.Play.current
 import scala.concurrent.duration._
 
 @Singleton
-class NotSpotifyController @Inject()(songsDAO : AbstractBaseDAO[SongsTable,Songs], playlistDAO : AbstractBaseDAO[PlaylistTable,Playlist],
-                                     playlistHasSongDAO : AbstractBaseDAO[PlaylistHasSongTable, PlaylistHasSong] , genreDAO:AbstractBaseDAO[GenreTable, Genre] ) (implicit ec: ExecutionContext) extends Controller {
+class NotSpotifyController @Inject()() (implicit ec: ExecutionContext) extends Controller {
   def root() = Action{ implicit request =>
     Ok(views.html.index())
-  }
-
-  def showSongs() = Action.async{ implicit request =>
-   songsDAO.findById(1).map(s => Ok(views.html.reproducesong(s.get.route)))
-  }
-
-  def playlist() =Action{ implicit request =>
-    Ok(views.html.playlist())
   }
 
 }

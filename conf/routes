@@ -4,9 +4,9 @@
 
 # An example controller showing how to write asynchronous code
 GET     /                            controllers.NotSpotifyController.root
-GET     /songs                       controllers.NotSpotifyController.showSongs
-GET     /playlist                    controllers.NotSpotifyController.playlist
-GET     /supplier/:id                 controllers.SuppliersController.supplier(id : Long)
+GET     /songs                       controllers.SongsController.reproduceSong
+GET     /playlist                    controllers.PlayListController.playlist
+GET     /supplier/:id                controllers.SuppliersController.supplier(id : Long)
 POST    /supplier                    controllers.SuppliersController.insertSupplier
 
 
