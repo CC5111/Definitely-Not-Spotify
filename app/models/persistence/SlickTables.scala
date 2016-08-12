@@ -41,7 +41,7 @@ object SlickTables extends HasDatabaseConfig[JdbcProfile] {
 
   class PlaylistTable(tag: Tag) extends BaseTable[Playlist](tag, "PLAYLIST") {
     def name = column[String]("NAME")
-    def genre = column[Int]("GENRE")
+    def genre = column[Long]("GENRE")
     def * = (id, name, genre) <> (Playlist.tupled, Playlist.unapply)
   }
 
