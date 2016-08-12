@@ -10,7 +10,7 @@ import javafx.scene.media.Media
 import javax.inject._
 import models.daos.{AbstractBaseDAO, BaseDAO}
 import models.entities.Supplier
-import models.persistence.SlickTables.{PlaylistTable, SongsTable, SuppliersTable}
+import models.persistence.SlickTables.{PlaylistHasSongTable, PlaylistTable, SongsTable, SuppliersTable}
 import play.api.libs.json.{Json, Writes}
 import play.api.mvc._
 import slick.jdbc.meta.MTable
