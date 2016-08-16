@@ -1,26 +1,39 @@
 @(listSongs: List[models.entities.Songs])
 
 
-    <table>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
+<script language="JavaScript" type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/jquery-ui.min.js"></script>
+
+
+    <table id="songsTable" border=1>
         <thead>
             <td>title</td>
             <td>artist</td>
             <td>album</td>
-            <td>route</td>
             <td>genre</td>
             <td>released</td>
         </thead>
         <tbody>
             @for(song <- listSongs){
-                <tr>
+                <tr class='clickable-row' data-href=@song.route>
                     <td>@song.title</td>
                     <td>@song.artist</td>
                     <td>@song.album</td>
-                    <td>@song.route</td>
                     <td>@song.genre</td>
                     <td>@song.released</td>
                 </tr>
             }
         </tbody>
     </table>
+<script>
+    jQuery(document).ready(function($) {
+    $(".clickable-row").click(function() {
+        document.getElementById("player").innerHTML = '<audio autoplay controls src=' + @routes.Assets.versioned("") + $(this).data("href") + '></audio>' ;
+    });
+});
 
+</script>
+
+<div id="player">
+    <audio  controls></audio>
+</div>
