@@ -28,12 +28,12 @@ import scala.concurrent.duration._
 class SongsController @Inject()(songsDAO : AbstractBaseDAO[SongsTable,Songs]) (implicit ec: ExecutionContext) extends Controller {
 
   def reproduceSong() = Action.async{ implicit request =>
-    songsDAO.getAllRows().map (s => print (s) )
     songsDAO.findById(1).map(s => Ok(views.html.reproducesong(s.get.route)))
   }
 
-  def showSong() = Action.async{ implicit request =>
-    songsDAO.findById(1).map(s => Ok(views.html.reproducesong(s.get.route)))
+  def showSongs() = Action.async{ implicit request =>
+    songsDAO.getAllRows().map (s =>  print(s.to))
+    songsDAO.getAllRows().map (s =>  Ok(views.html.showsongs(s.toList)) )
   }
 
 

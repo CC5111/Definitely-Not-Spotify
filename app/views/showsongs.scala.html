@@ -1,0 +1,26 @@
+@(listSongs: List[models.entities.Songs])
+
+
+    <table>
+        <thead>
+            <td>title</td>
+            <td>artist</td>
+            <td>album</td>
+            <td>route</td>
+            <td>genre</td>
+            <td>released</td>
+        </thead>
+        <tbody>
+            @for(song <- listSongs){
+                <tr>
+                    <td>@song.title</td>
+                    <td>@song.artist</td>
+                    <td>@song.album</td>
+                    <td>@song.route</td>
+                    <td>@song.genre</td>
+                    <td>@song.released</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
