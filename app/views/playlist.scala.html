@@ -1,9 +1,11 @@
-@(genre:String)
+@(genres: List[models.entities.Genre])
 <form method="POST" id="new" action="./createplaylist">
     <p>Nombre: <input type="text" name="name"> </p>
     <p>Género:
         <select name="genre">
-            <option value="1">@routes.Assets.versioned(genre)</option>
+            @for(genre <- genres) {
+                <option value="@genre.id">@genre.name</option>
+            }
         </select>
     </p>
     <input type="submit" value="Crear Playlist" />
