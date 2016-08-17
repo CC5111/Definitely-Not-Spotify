@@ -16,7 +16,7 @@
 }
 
 #wrapper.left-toggled {
-    padding-left: 250px;
+    padding-left: 250px;;
 }
 
 #wrapper.right-toggled {
@@ -28,10 +28,11 @@
     position: fixed;
     left: 250px;
     width: 0;
-    height: 100%;
+    height: 80.5%;
     margin-left: -250px;
     overflow-y: auto;
-    background: #D7D7D7;
+    overflow-x: hidden;
+    background: #BFACBD;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
@@ -46,7 +47,7 @@
     height: 100%;
     margin-right: -250px;
     overflow-y: auto;
-    background: #D7D7D7;
+    background: #BFACBD;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
@@ -56,7 +57,7 @@
     position: fixed;
     bottom: 0;
     width: 100%;
-    background-color: #D7D7D7;
+    background-color: #BFACBD;
     panel-
 }
 
@@ -151,7 +152,7 @@ audio
 .sidebar-nav li a {
     display: block;
     text-decoration: none;
-    color: #999999;
+    color: #B4008F;
 }
 
 .sidebar-nav li a:hover {

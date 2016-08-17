@@ -217,7 +217,7 @@ div.audio-player {
   height: 34px;
   top: 32px;
   left: 7px;
-  background: transparent url('playpause.png') 0 0 no-repeat;
+  background: transparent url('playpause2.png') 0 0 no-repeat;
 }
 .mejs-controls .mejs-pause button { background-position: 0 -35px; }
  
@@ -228,7 +228,7 @@ div.audio-player {
   height: 19px;
   top: 9px;
   right: 142px;
-  background: transparent url('audio.png') 0 0;
+  background: transparent url('audio2.png') 0 0;
 }
 .mejs-controls .mejs-unmute button { background-position: 0 -19px; }
 
