@@ -1,4 +1,21 @@
-@(genres: List[models.entities.Genre])
+@(genres: Seq[models.entities.Genre], playlists: Seq[models.entities.Playlist])
+<h1>Listas de reproducción</h1>
+<table id="songsTable" border=1>
+    <thead>
+        <td>Nombre</td>
+        <td>Género</td>
+    </thead>
+    <tbody>
+        @for(playlist <- playlists){
+            <tr>
+                <td>@playlist.name</td>
+                <td>@playlist.genre</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h1>Crear nueva lista de reproducción</h1>
 <form method="POST" id="new" action="./createplaylist">
     <p>Nombre: <input type="text" name="name"> </p>
     <p>Género:
@@ -8,5 +25,5 @@
             }
         </select>
     </p>
-    <input type="submit" value="Crear Playlist" />
+    <input type="submit" value="Crear" />
 </form>

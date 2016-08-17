@@ -32,7 +32,6 @@ class SongsController @Inject()(songsDAO : AbstractBaseDAO[SongsTable,Songs]) (i
   }
 
   def showSongs() = Action.async{ implicit request =>
-    songsDAO.getAllRows().map (s =>  print(s.to))
     songsDAO.getAllRows().map (s =>  Ok(views.html.showsongs(s.toList)) )
   }
 

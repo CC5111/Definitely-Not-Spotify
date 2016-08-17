@@ -38,7 +38,6 @@ abstract class BaseDAO[T <: BaseTable[A], A <: BaseEntity]() extends AbstractBas
   def insert(rows : Seq[A]): Future[Seq[Long]] ={
     db.run(tableQ returning tableQ.map(_.id) ++= rows.filter(_.isValid))
   }
-
   def update(row : A): Future[Int] = {
     if (row.isValid)
       db.run(tableQ.filter(_.id === row.id).update(row))
