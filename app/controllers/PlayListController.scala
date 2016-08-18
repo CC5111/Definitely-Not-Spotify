@@ -52,14 +52,17 @@ class PlayListController @Inject()() (implicit ec: ExecutionContext) extends Con
     })
   }
 
-  def aPlaylist() = Action.async{ implicit request =>
-    PlaylistHasSongDAO.getSongsofPlaylist(2).map{
+
+  def showPlaylist(id :Long) = Action.async{ implicit request =>
+    PlaylistHasSongDAO.getSongsofPlaylist(id).map{
       songs =>{
         val songList = for (song <- songs) yield SongsWithGenre(song._1,song._2,song._3,song._4,song._5,song._6)
         Ok(views.html.songsPlaylist2(songList))
       }
     }
   }
+
+
 
   def addSongtoPlaylist(idSong : Long, idPlayList : Long) = {
     PlaylistHasSongDAO.insert(PlaylistHasSong(0,idSong,idPlayList))
