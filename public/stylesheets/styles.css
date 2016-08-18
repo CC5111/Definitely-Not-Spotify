@@ -217,7 +217,7 @@ div.audio-player {
   height: 34px;
   top: 32px;
   left: 7px;
-  background: transparent url('playpause2.png') 0 0 no-repeat;
+  background: transparent url('../images/playpause2.png') 0 0 no-repeat;
 }
 .mejs-controls .mejs-pause button { background-position: 0 -35px; }
  
@@ -228,7 +228,7 @@ div.audio-player {
   height: 19px;
   top: 9px;
   right: 142px;
-  background: transparent url('audio2.png') 0 0;
+  background: transparent url('../images/audio2.png') 0 0;
 }
 .mejs-controls .mejs-unmute button { background-position: 0 -19px; }
 
@@ -325,7 +325,7 @@ div.audio-player {
   width: 20px;
   height: 22px;
   top: -6px;
-  background: url('handle-lg.png') no-repeat;
+  background: url('../images/handle-lg.png') no-repeat;
 }
 .mejs-controls .mejs-horizontal-volume-slider .mejs-horizontal-volume-handle {
   position: absolute;
@@ -333,7 +333,7 @@ div.audio-player {
   width: 12px;
   height: 14px;
   top: -1px;
-  background: url('handle-sm.png') no-repeat;
+  background: url('../images/handle-sm.png') no-repeat;
 }
 
 
@@ -346,7 +346,7 @@ div.audio-player {
   top: -26px;
   margin-left: -17px;
   z-index: 9999;
-  background: url('time-box.png');
+  background: url('../images/time-box.png');
 }
  
 .mejs-controls .mejs-time-rail .mejs-time-float-current {

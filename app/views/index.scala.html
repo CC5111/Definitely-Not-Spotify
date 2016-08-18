@@ -11,13 +11,13 @@
 
     <title>Definitely Not Spotify</title>
 
-    <link rel="stylesheet" type="text/css" media="all" href="css/styles.css">
+    <link rel="stylesheet" type="text/css" media="all" href="@routes.Assets.versioned("stylesheets/styles.css")">
 
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="@routes.Assets.versioned("stylesheets/bootstrap.min.css")" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="css/simple-sidebar.css" rel="stylesheet">
+    <link href="@routes.Assets.versioned("stylesheets/simple-sidebar.css")" rel="stylesheet">
 
     <!-- Audio CSS -->
 
@@ -28,8 +28,8 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 
     <![endif]-->
-    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
-    <script type="text/javascript" src="js/mediaelement-and-player.min.js"></script>
+    <script type="text/javascript" src="@routes.Assets.versioned("javascripts/jquery-1.10.2.min.js")"></script>
+    <script type="text/javascript" src="@routes.Assets.versioned("javascripts/mediaelement-and-player.min.js")"></script>
 
 </head>
 
@@ -94,14 +94,14 @@
         <div class="my-panel-group" id="accordion" style="height: 130px">
             <div class="audio-player" style="background: #BFACBD; width: 700px; margin-top: 25px">
                 <h2 style="color: #8A036E">The Good Lawdz - Evidence Song</h2>
-                <audio id="audio-player" src="../public/songs/DschinghisKhan.mp3" type="audio/mp3" controls="controls"></audio>
-            </div><!-- @end .audio-player -->
+                <audio id="audio-player" src="@routes.Assets.versioned("songs/DschinghisKhan.mp3")" type="audio/mp3" controls="controls"></audio>
+            </div><!-- end .audio-player -->
         </div>
         <!-- /#right-sidebar-wrapper -->
 
         <!-- Toggle Buttons -->
         <a href="#left-menu-toggle" class="btn btn-link btn-md" id="left-menu-toggle" style="background-color: #BFACBD; height: 130px; width: 250px; ">
-            <img src=css/Logo-trans2.png width=100px height=100px style="margin-left: -30px">
+            <img src="@routes.Assets.versioned("images/Logo-trans2.png")" width=100px height=100px style="margin-left: -30px">
             </img>
         </a>
 
@@ -152,7 +152,7 @@
 
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="@routes.Assets.versioned("javascripts/bootstrap.min.js")"></script>
 
     <!-- Menu Toggle Script -->
     <script>
