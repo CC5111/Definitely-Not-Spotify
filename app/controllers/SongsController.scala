@@ -29,13 +29,17 @@ class SongsController @Inject()() (implicit ec: ExecutionContext) extends Contro
 
 
 
-  def reproduceSong() = Action.async{ implicit request =>
-    SongsDAO.findById(1).map(s => Ok(views.html.reproducesong(s.get.route)))
+  def reproduceSong(id: Long) = Action.async{ implicit request =>
+    SongsDAO.findById(id).map(s => Ok(views.html.reproducesong(s.get.route)))
+  }
+
+  def getSongName(id: Long) = Action.async{ implicit request =>
+    SongsDAO.findById(id).map(s => Ok(views.html.ajaxresponse(s.get.title + " - " + s.get.artist)))
   }
 
   def showSongs() = Action.async{implicit request =>
     SongsDAO.getSongsWithGenre().map( songs => {
-      val songList = for (song <- songs) yield SongsWithGenre(song._1,song._2,song._3,song._4,song._5,song._6)
+      val songList = for (song <- songs) yield SongsWithGenre(song._1,song._2,song._3,song._4,song._5,song._6, song._7)
       Ok(views.html.index(songList))})
   }
 
