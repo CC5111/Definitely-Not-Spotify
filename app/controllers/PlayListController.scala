@@ -2,7 +2,7 @@ package controllers
 
 import javax.inject.{Inject, Singleton}
 
-import models.daos.AbstractBaseDAO
+import models.daos.{GenreDAO, PlaylistDAO, PlaylistHasSongDAO, AbstractBaseDAO}
 import models.persistence.SlickTables.{GenreTable, PlaylistHasSongTable, PlaylistTable, SongsTable}
 
 import play.api.mvc._
@@ -28,13 +28,11 @@ import models.entities.{Playlist, _}
 import scala.concurrent.duration._
 
 @Singleton
-class PlayListController @Inject()(playlistDAO : AbstractBaseDAO[PlaylistTable,Playlist],
-                                   playlistHasSongDAO : AbstractBaseDAO[PlaylistHasSongTable, PlaylistHasSong],
-                                   genreDAO:AbstractBaseDAO[GenreTable, Genre]) (implicit ec: ExecutionContext) extends Controller {
+class PlayListController @Inject()() (implicit ec: ExecutionContext) extends Controller {
 
   def playlist() = Action.async{ implicit request =>
-    genreDAO.getAllRows.flatMap(genres => {
-      playlistDAO.getAllRows.map(pl =>  Ok(views.html.playlist(genres, pl)))
+    GenreDAO.getAllRows.flatMap(genres => {
+      PlaylistDAO.getAllRows.map(pl =>  Ok(views.html.playlist(genres, pl)))
     })
   }
 
@@ -46,12 +44,25 @@ class PlayListController @Inject()(playlistDAO : AbstractBaseDAO[PlaylistTable,P
   def createPlaylist() = Action.async{ implicit request =>
     val name: String = request.body.asFormUrlEncoded.get("name")(0)
     val genre: Long = request.body.asFormUrlEncoded.get("genre")(0).toLong
-    playlistDAO.getAllRows().map(s => {
-      playlistDAO.insert(Playlist(0, name, genre)).map{
+    PlaylistDAO.getAllRows().map(s => {
+      PlaylistDAO.insert(Playlist(0, name, genre)).map{
         p => println("inserte ",p)
       }
       Ok(views.html.dummy())
     })
+  }
+
+  def aPlaylist() = Action.async{ implicit request =>
+    PlaylistHasSongDAO.getSongsofPlaylist(2).map{
+      songs =>{
+        val songList = for (song <- songs) yield SongsWithGenre(song._1,song._2,song._3,song._4,song._5,song._6)
+        Ok(views.html.songsPlaylist2(songList))
+      }
+    }
+  }
+
+  def addSongtoPlaylist(idSong : Long, idPlayList : Long) = {
+    PlaylistHasSongDAO.insert(PlaylistHasSong(0,idSong,idPlayList))
   }
 
 }
