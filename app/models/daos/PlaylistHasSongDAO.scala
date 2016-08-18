@@ -24,7 +24,7 @@ object PlaylistHasSongDAO extends BaseDAO[PlaylistHasSongTable,PlaylistHasSong] 
       songsOfPlaylist  <- tableQ  if  songsOfPlaylist.playlist === IdPlaylist
       songs <- SongTableQ if  songs.id === songsOfPlaylist.song
       genres <- GenreTableQ if songs.genre === genres.id
-    } yield (songs.title, songs.artist ,songs.album, songs.route, genres.name, songs.released)
+    } yield (songs.id, songs.title, songs.artist ,songs.album, songs.route, genres.name, songs.released)
     db.run(query.result)
   }
 }

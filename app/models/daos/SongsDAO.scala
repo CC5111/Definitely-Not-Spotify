@@ -16,11 +16,11 @@ object SongsDAO extends BaseDAO[SongsTable,Songs] {
 
 
 
-  def getSongsWithGenre() : Future[Seq[(String, String, String, String, String, Long)]] = {
+  def getSongsWithGenre() : Future[Seq[(Long, String, String, String, String, String, Long)]] = {
     val query  = for{
       songs <- tableQ
       genres <- genreTableQ if songs.genre === genres.id
-    } yield (songs.title, songs.artist ,songs.album, songs.route, genres.name, songs.released)
+    } yield (songs.id, songs.title, songs.artist ,songs.album, songs.route, genres.name, songs.released)
     db.run(query.result)
   }
 
