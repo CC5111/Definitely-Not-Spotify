@@ -34,7 +34,7 @@ class PlayListController @Inject()(playlistDAO : AbstractBaseDAO[PlaylistTable,P
 
   def playlist() = Action.async{ implicit request =>
     genreDAO.getAllRows.flatMap(genres => {
-      playlistDAO.getAllRows.map(s => {println(s.toList); Ok(views.html.playlist(genres, s))})
+      playlistDAO.getAllRows.map(pl =>  Ok(views.html.playlist(genres, pl)))
     })
   }
 
