@@ -95,7 +95,7 @@
         <!-- Footer Sidebar -->
         <div class="my-panel-group" id="accordion" style="height: 130px">
             <div class="audio-player" style="background: #BFACBD; width: 700px; margin-top: 25px">
-                <h2 style="color: #8A036E">The Good Lawdz - Evidence Song</h2>
+                <h2 id="song-name" style="color: #8A036E">The Good Lawdz - Evidence Song</h2>
                 <audio id="audio-player" src="@routes.Assets.versioned(listSongs(0).route)" type="audio/mp3" controls="controls"></audio>
             </div><!-- end .audio-player -->
         </div>
@@ -122,7 +122,7 @@
                             </thead>
                             <tbody>
                             @for(song <- listSongs){
-                                <tr class='clickable-row' data-href=@song.route>
+                                <tr class='clickable-row' data-href=@song.id>
                                     <td>@song.title</td>
                                     <td>@song.artist</td>
                                     <td>@song.album</td>
@@ -138,6 +138,7 @@
             document.getElementById("audio-player").src = @routes.Assets.versioned("") + $(this).data("href");
             document.getElementById("audio-player").autoplay = true;
             document.getElementById("audio-player").load();
+            $("#song-name").load("getsong/");
         });
     });
 </script>
@@ -179,7 +180,6 @@
                 background: 'blue'
             });
         });
-        console.log($("#audio-player"))
     </script>
 
 </body>
