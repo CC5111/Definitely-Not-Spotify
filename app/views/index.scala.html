@@ -30,6 +30,8 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 
     <![endif]-->
+
+    <script type="text/javascript" src="@routes.Assets.versioned("javascripts/buttonAction.js")"></script>
     <script type="text/javascript" src="@routes.Assets.versioned("javascripts/jquery-1.10.2.min.js")"></script>
     <script type="text/javascript" src="@routes.Assets.versioned("javascripts/mediaelement-and-player.min.js")"></script>
 
@@ -112,44 +114,39 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                        <table id="songsTable" class="table table-striped" border=1>
+                        <table id="songsTable" class="table table-striped" border="2" style="background: #EABBFA">
                             <thead>
-                                <td>Title</td>
-                                <td>Artist</td>
-                                <td>Album</td>
-                                <td>Genre</td>
-                                <td>Released</td>
+                                <td><b>Title</b></td>
+                                <td><b>Artist</b></td>
+                                <td><b>Album</b></td>
+                                <td><b>Genre</b></td>
+                                <td><b>Released</b></td>
+                                <td><b>Play</b></td>
+                                <td><b>Add to List</b></td>
                             </thead>
                             <tbody>
                             @for(song <- listSongs){
-                                <tr class='clickable-row' data-href=@song.id>
+                                <tr>
                                     <td>@song.title</td>
                                     <td>@song.artist</td>
                                     <td>@song.album</td>
                                     <td>@song.genre</td>
                                     <td>@song.released</td>
+                                    <td>
+                                        <button onclick='playSong($(this).data("href"))' data-href=@song.id ><img src="@routes.Assets.versioned("images/Play song.png")" width="20px" height="20px"></img></button>
+                                    </td>
+                                    <td>
+                                        <button onclick='addToList($(this).data("href") )' ><img src="@routes.Assets.versioned("images/Add to list.png")" width="20px" height="20px"></img></button>
+                                    </td>
                                 </tr>
                             }
                             </tbody>
                         </table>
-<script>
-    jQuery(document).ready(function($) {
-        $(".clickable-row").click(function() {
-            $.get("playsong/" + $(this).data("href"), function(data) {
-                document.getElementById("audio-player").src = data
-                document.getElementById("audio-player").autoplay = true;
-                document.getElementById("audio-player").load()
-            });
-            $("#song-name").load("getsong/" + $(this).data("href"));
-        });
-    });
-</script>
                     </div>
                 </div>
             </div>
         </div>
         <!-- /#page-content-wrapper -->
-
     </div>
     <!-- /#wrapper -->
 
