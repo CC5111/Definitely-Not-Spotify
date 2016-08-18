@@ -4,9 +4,12 @@
 function playSong(source){
     console.log (source)
     jQuery(document).ready(function($) {
-        document.getElementById("audio-player").src = source
-        document.getElementById("audio-player").autoplay = true;
-        document.getElementById("audio-player").load();
+        $.get("playsong/" + source, function(data) {
+            document.getElementById("audio-player").src = data
+            document.getElementById("audio-player").autoplay = true;
+            document.getElementById("audio-player").load()
+        });
+        $("#song-name").load("getsong/" + source);
     });
 }
 function myFunction() {

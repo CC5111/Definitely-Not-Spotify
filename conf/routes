@@ -4,12 +4,14 @@
 
 # An example controller showing how to write asynchronous code
 GET     /                            controllers.SongsController.showSongs
+GET     /playsong/:id                controllers.SongsController.reproduceSong(id: Long)
+GET     /getsong/:id                 controllers.SongsController.getSongName(id: Long)
 GET     /songs                       controllers.NotSpotifyController.root
 GET     /playlist                    controllers.PlayListController.playlist
 POST    /createplaylist              controllers.PlayListController.createPlaylist
 GET     /supplier/:id                controllers.SuppliersController.supplier(id : Long)
 POST    /supplier                    controllers.SuppliersController.insertSupplier
-
+GET     /aplaylist                    controllers.PlayListController.aPlaylist
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
