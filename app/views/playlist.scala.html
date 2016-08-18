@@ -9,7 +9,7 @@
         @for(playlist <- playlists){
             <tr>
                 <td>@playlist.name</td>
-                <td>@playlist.genre</td>
+                <td>@genres(playlist.genre.toInt-1).name</td>
             </tr>
         }
     </tbody>
