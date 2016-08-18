@@ -1,7 +1,0 @@
-New log file opened at Fri Jul 29 11:22:37 CLT 2016 by 36713@wp-115-217.dcc.uchile.cl
-Taking next connection to: 52633
-New client attempting to connect on port: 52634-52633
-  Address = /10.0.115.217:52633
-This client on port 52634 has uuid feced6e8-a931-4d87-8c48-03e79c6366bb configName play-fork-run humanReadableName Play Fork Run protocolVersion 1 featureTags Vector()
-Connected Clients: play-fork-run-feced6e8-a931-4d87-8c48-03e79c6366bb
-Taking next connection to: 52633

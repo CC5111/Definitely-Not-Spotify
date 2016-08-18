@@ -40,7 +40,7 @@ class PlayListController @Inject()(playlistDAO : AbstractBaseDAO[PlaylistTable,P
 
   def selectPlaylist(id: Long) = Action{ implicit request =>
     // TODO
-    Ok(views.html.index())
+    Ok(views.html.dummy())
   }
 
   def createPlaylist() = Action.async{ implicit request =>
@@ -50,7 +50,7 @@ class PlayListController @Inject()(playlistDAO : AbstractBaseDAO[PlaylistTable,P
       playlistDAO.insert(Playlist(0, name, genre)).map{
         p => println("inserte ",p)
       }
-      Ok(views.html.index())
+      Ok(views.html.dummy())
     })
   }
 

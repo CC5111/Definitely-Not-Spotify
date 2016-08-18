@@ -33,7 +33,7 @@ import scala.concurrent.duration._
 @Singleton
 class NotSpotifyController @Inject()() (implicit ec: ExecutionContext) extends Controller {
   def root() = Action{ implicit request =>
-    Ok(views.html.index())
+    Ok(views.html.dummy())
   }
 
 }

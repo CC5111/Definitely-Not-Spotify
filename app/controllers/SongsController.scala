@@ -36,7 +36,7 @@ class SongsController @Inject()() (implicit ec: ExecutionContext) extends Contro
   def showSongs() = Action.async{implicit request =>
     SongsDAO.getSongsWithGenre().map( songs => {
       val songList = for (song <- songs) yield SongsWithGenre(song._1,song._2,song._3,song._4,song._5,song._6)
-      Ok(views.html.showsongs(songList))})
+      Ok(views.html.index(songList))})
   }
 
 

@@ -1,3 +1,5 @@
+@(listSongs: Seq[models.entities.SongsWithGenre])
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -94,7 +96,7 @@
         <div class="my-panel-group" id="accordion" style="height: 130px">
             <div class="audio-player" style="background: #BFACBD; width: 700px; margin-top: 25px">
                 <h2 style="color: #8A036E">The Good Lawdz - Evidence Song</h2>
-                <audio id="audio-player" src="@routes.Assets.versioned("songs/DschinghisKhan.mp3")" type="audio/mp3" controls="controls"></audio>
+                <audio id="player" src="" type="audio/mp3" controls="controls"></audio>
             </div><!-- end .audio-player -->
         </div>
         <!-- /#right-sidebar-wrapper -->
@@ -110,35 +112,38 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                        <table class="table table-striped" border="2" style="background: #EABBFA">
-                            <tr>
-                                <th>#</th>
-                                <th>Canción</th>
-                                <th>Álbum</th>
-                                <th>Artista</th>
-                                <th>Género</th>
-                                <th>Duración</th>
-                                <th>Fecha</th>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>PokeRap</td>
-                                <td>Rattata</td>
-                                <td>Pidgey</td>
-                                <td>Rap(?</td>
-                                <td>Tantos rattatas y pidgeys que existan</td>
-                                <td>Hoy</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Otra</td>
-                                <td>Potatoe</td>
-                                <td>Papa</td>
-                                <td>Si</td>
-                                <td>No</td>
-                                <td>Ayer</td>
-                            </tr>
+                        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
+                        <script language="JavaScript" type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/jquery-ui.min.js"></script>
+
+                        <table id="songsTable" class="table table-striped" border=1>
+                            <thead>
+                                <td>Title</td>
+                                <td>Artist</td>
+                                <td>Album</td>
+                                <td>Genre</td>
+                                <td>Released</td>
+                            </thead>
+                            <tbody>
+                            @for(song <- listSongs){
+                                <tr class='clickable-row' data-href=@song.route>
+                                    <td>@song.title</td>
+                                    <td>@song.artist</td>
+                                    <td>@song.album</td>
+                                    <td>@song.genre</td>
+                                    <td>@song.released</td>
+                                </tr>
+                            }
+                            </tbody>
                         </table>
+                    <script>
+    jQuery(document).ready(function($) {
+        $(".clickable-row").click(function() {
+            document.getElementById("player").src = @routes.Assets.versioned("") + $(this).data("href");
+            document.getElementById("player").load();
+        });
+    });
+
+</script>
                     </div>
                 </div>
             </div>
