@@ -95,7 +95,7 @@
         <!-- Footer Sidebar -->
         <div class="my-panel-group" id="accordion" style="height: 130px">
             <div class="audio-player" style="background: #BFACBD; width: 700px; margin-top: 25px">
-                <h2 id="song-name" style="color: #8A036E">The Good Lawdz - Evidence Song</h2>
+                <h2 id="song-name" style="color: #8A036E">@listSongs(0).title - @listSongs(0).artist</h2>
                 <audio id="audio-player" src="@routes.Assets.versioned(listSongs(0).route)" type="audio/mp3" controls="controls"></audio>
             </div><!-- end .audio-player -->
         </div>
@@ -135,10 +135,12 @@
 <script>
     jQuery(document).ready(function($) {
         $(".clickable-row").click(function() {
-            document.getElementById("audio-player").src = @routes.Assets.versioned("") + $(this).data("href");
-            document.getElementById("audio-player").autoplay = true;
-            document.getElementById("audio-player").load();
-            $("#song-name").load("getsong/");
+            $.get("playsong/" + $(this).data("href"), function(data) {
+                document.getElementById("audio-player").src = data
+                document.getElementById("audio-player").autoplay = true;
+                document.getElementById("audio-player").load()
+            });
+            $("#song-name").load("getsong/" + $(this).data("href"));
         });
     });
 </script>
