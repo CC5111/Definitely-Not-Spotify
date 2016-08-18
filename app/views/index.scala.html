@@ -122,7 +122,7 @@
                             </thead>
                             <tbody>
                             @for(song <- listSongs){
-                                <tr class='clickable-row' data-href=@song.route>
+                                <tr class='clickable-row' data-href=@song.id>
                                     <td>@song.title</td>
                                     <td>@song.artist</td>
                                     <td>@song.album</td>
