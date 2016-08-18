@@ -96,7 +96,7 @@
         <div class="my-panel-group" id="accordion" style="height: 130px">
             <div class="audio-player" style="background: #BFACBD; width: 700px; margin-top: 25px">
                 <h2 style="color: #8A036E">The Good Lawdz - Evidence Song</h2>
-                <audio id="player" src="" type="audio/mp3" controls="controls"></audio>
+                <audio id="audio-player" src="@routes.Assets.versioned(listSongs(0).route)" type="audio/mp3" controls="controls"></audio>
             </div><!-- end .audio-player -->
         </div>
         <!-- /#right-sidebar-wrapper -->
@@ -112,9 +112,6 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
-                        <script language="JavaScript" type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/jquery-ui.min.js"></script>
-
                         <table id="songsTable" class="table table-striped" border=1>
                             <thead>
                                 <td>Title</td>
@@ -135,14 +132,14 @@
                             }
                             </tbody>
                         </table>
-                    <script>
+<script>
     jQuery(document).ready(function($) {
         $(".clickable-row").click(function() {
-            document.getElementById("player").src = @routes.Assets.versioned("") + $(this).data("href");
-            document.getElementById("player").load();
+            document.getElementById("audio-player").src = @routes.Assets.versioned("") + $(this).data("href");
+            document.getElementById("audio-player").autoplay = true;
+            document.getElementById("audio-player").load();
         });
     });
-
 </script>
                     </div>
                 </div>
@@ -182,6 +179,7 @@
                 background: 'blue'
             });
         });
+        console.log($("#audio-player"))
     </script>
 
 </body>
