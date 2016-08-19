@@ -1,4 +1,4 @@
-@(listSongs: Seq[models.entities.SongsWithGenre])
+@(listSongs: Seq[models.entities.SongsWithGenre], title: String)
 
 <!DOCTYPE html>
 <html lang="en" style="overflow: hidden">
@@ -97,7 +97,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1>All songs</h1>
+                        <h1>@title</h1>
                         <div style="overflow-y:scroll; overflow-x:hidden; height:480px;">
                         <table id="songsTable" class="table table-striped" border="1" style="background: #EABBFA">
                             <thead>
