@@ -40,7 +40,7 @@ class SongsController @Inject()() (implicit ec: ExecutionContext) extends Contro
   def showSongs() = Action.async{implicit request =>
     SongsDAO.getSongsWithGenre().map( songs => {
       val songList = for (song <- songs) yield SongsWithGenre(song._1,song._2,song._3,song._4,song._5,song._6, song._7)
-      Ok(views.html.index(songList))})
+      Ok(views.html.index(songList, "All songs"))})
   }
 
   def searchSong(keyword: String) = Action.async{implicit request =>
@@ -50,7 +50,7 @@ class SongsController @Inject()() (implicit ec: ExecutionContext) extends Contro
       val songFinded: Seq[SongsWithGenre] = for {
         song <- songList if isSimilar(song.title, keyWord) || isSimilar(song.album , keyWord) || isSimilar(song.artist , keyWord) || isSimilar(song.genre, keyWord) || song.released == getLong(keyWord)
       } yield song
-      Ok(views.html.index(songFinded))})
+      Ok(views.html.index(songFinded, "Searching: "+keyword))})
   }
 
 
