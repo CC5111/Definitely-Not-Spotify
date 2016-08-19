@@ -1,5 +1,7 @@
 logs
 target
+db.mv.db
+db.trace.db
 /.idea
 /.idea_modules
 /.classpath
