@@ -47,12 +47,12 @@ class PlayListController @Inject()() (implicit ec: ExecutionContext) extends Con
 
   def createPlaylist() = Action.async{ implicit request =>
     val name: String = request.body.asFormUrlEncoded.get("name")(0)
-    val genre: Long = request.body.asFormUrlEncoded.get("genre")(0).toLong
-    PlaylistDAO.getAllRows().map(s => {
-      PlaylistDAO.insert(Playlist(0, name, genre)).map{
-        p => println("inserte ",p)
+    SongsDAO.getSongsWithGenre().map( songs => {
+      val songList = for (song <- songs) yield SongsWithGenre(song._1,song._2,song._3,song._4,song._5,song._6, song._7)
+      PlaylistDAO.insert(Playlist(0, name, 4)).map{
+        p => Unit
       }
-      Ok(views.html.dummy())
+      Ok(views.html.index(songList))
     })
   }
 
@@ -80,7 +80,7 @@ class PlayListController @Inject()() (implicit ec: ExecutionContext) extends Con
       val listString = for{
         pl <- playlists
       } yield ("<a href='/playlist/"+pl.id+"'>"+pl.name+"</a>\n")
-      Ok(views.html.ajaxresponse(listString.fold("")((x: String, y: String) => x + y )))
+      Ok(views.html.ajaxresponse(listString.fold("<div><form method=\"POST\" id=\"new\" action=\"./createplaylist\"><input type=\"text\" style=\"background:#000000; width: 90%;\" name=\"name\" placeholder=\"New List\"></div>")((x: String, y: String) => x + y )))
     })
   }
 
