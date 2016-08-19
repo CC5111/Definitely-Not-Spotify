@@ -44,10 +44,14 @@ class SongsController @Inject()() (implicit ec: ExecutionContext) extends Contro
   }
 
   def searchSong(keyWord : String) = Action.async{implicit request =>
-    SongsDAO.searchSong(keyWord).map( songs => {
+    SongsDAO.getSongsWithGenre().map( songs => {
       val songList = for (song <- songs) yield SongsWithGenre(song._1,song._2,song._3,song._4,song._5,song._6, song._7)
-      Ok(views.html.index(songList))})
+      val songFinded: Seq[SongsWithGenre] = for {
+        song <- songList if song.title == keyWord || song.album == keyWord || song.artist == keyWord || song.genre == keyWord || song.released == keyWord.toLong
+      } yield song
+      Ok(views.html.index(songFinded))})
   }
+
 
 
 
