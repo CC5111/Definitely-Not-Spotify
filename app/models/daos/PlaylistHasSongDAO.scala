@@ -17,14 +17,16 @@ object PlaylistHasSongDAO extends BaseDAO[PlaylistHasSongTable,PlaylistHasSong] 
 
   val SongTableQ = SlickTables.songsTableQ
   val GenreTableQ = SlickTables.genreTableQ
+  val PlaylistTableQ = SlickTables.playlistTableQ
 
 
   def getSongsofPlaylist(IdPlaylist : Long) = {
     val query  = for{
+      playlist <- PlaylistTableQ if playlist.id === IdPlaylist
       songsOfPlaylist  <- tableQ  if  songsOfPlaylist.playlist === IdPlaylist
       songs <- SongTableQ if  songs.id === songsOfPlaylist.song
       genres <- GenreTableQ if songs.genre === genres.id
-    } yield (songs.id, songs.title, songs.artist ,songs.album, songs.route, genres.name, songs.released,songsOfPlaylist.id )
+    } yield (songs.id, songs.title, songs.artist ,songs.album, songs.route, genres.name, songs.released,songsOfPlaylist.id, playlist.name)
     db.run(query.result)
   }
 }
