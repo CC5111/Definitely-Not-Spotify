@@ -14,11 +14,11 @@ function playSong(source){
 }
 
 function ajaxmenuplaylist() {
-    $("#Lists").load("menuplaylist");
+    $("#Lists").load("/menuplaylist");
 }
 
 function ajaxplaylist(song) {
-    $("#adding-playlist-"+song).load("addingplaylist/" + song);
+    $("#adding-playlist-"+song).load("/addingplaylist/" + song);
 }
 
 function addSongToList(song, playlist) {
