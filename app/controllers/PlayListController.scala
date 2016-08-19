@@ -52,7 +52,7 @@ class PlayListController @Inject()() (implicit ec: ExecutionContext) extends Con
       PlaylistDAO.insert(Playlist(0, name, 4)).map{
         p => Unit
       }
-      Ok(views.html.index(songList))
+      Ok(views.html.index(songList, "All songs"))
     })
   }
 
