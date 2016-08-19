@@ -40,7 +40,7 @@ class PlayListController @Inject()() (implicit ec: ExecutionContext) extends Con
     PlaylistDAO.getAllRows().map(playlists => {
       val listString = for{
         pl <- playlists
-      } yield ("<li><a onclick='/addSongToList("+song+","+pl.id+");'>"+ pl.name + "</a></li>\n")
+      } yield ("<li><a onclick='addSongToList("+song+","+pl.id+");'>"+ pl.name + "</a></li>\n")
       Ok(views.html.ajaxresponse(listString.fold("")((x: String, y: String) => x + y )))
     })
   }
