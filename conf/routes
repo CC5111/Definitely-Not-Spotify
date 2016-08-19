@@ -3,18 +3,20 @@
 # ~~~~
 
 # An example controller showing how to write asynchronous code
-GET     /                            controllers.SongsController.showSongs
-GET     /playsong/:id                controllers.SongsController.reproduceSong(id: Long)
-GET     /getsong/:id                 controllers.SongsController.getSongName(id: Long)
-GET     /songs                       controllers.NotSpotifyController.root
-GET     /playlist                    controllers.PlayListController.playlist
-POST    /createplaylist              controllers.PlayListController.createPlaylist
-GET     /supplier/:id                controllers.SuppliersController.supplier(id : Long)
-POST    /supplier                    controllers.SuppliersController.insertSupplier
-GET     /playlist/:id          controllers.PlayListController.showPlaylist(id : Long)
-GET     /addingplaylist/:song        controllers.PlayListController.getPlaylistToAdd(song: Long)
-GET     /addsong/:song/:list         controllers.PlayListController.addSongtoPlaylist(song: Long, list: Long)
-GET     /search()                       controllers.NotSpotifyController.root
+
+GET     /                           controllers.SongsController.showSongs
+GET     /playsong/:id               controllers.SongsController.reproduceSong(id: Long)
+GET     /getsong/:id                controllers.SongsController.getSongName(id: Long)
+GET     /songs                      controllers.NotSpotifyController.root
+GET     /playlist                   controllers.PlayListController.playlist
+POST    /createplaylist             controllers.PlayListController.createPlaylist
+GET     /supplier/:id               controllers.SuppliersController.supplier(id : Long)
+POST    /supplier                   controllers.SuppliersController.insertSupplier
+GET     /playlist/:id               controllers.PlayListController.showPlaylist(id : Long)
+GET     /addingplaylist/:song       controllers.PlayListController.getPlaylistToAdd(song: Long)
+GET     /addsong/:song/:list        controllers.PlayListController.addSongtoPlaylist(song: Long, list: Long)
+GET     /menuplaylist               controllers.PlayListController.getListInMenu
+GET     /searchSong/:keyWord        controllers.SongsController.searchSong(keyWord : String)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

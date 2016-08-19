@@ -37,7 +37,6 @@ class PlayListController @Inject()() (implicit ec: ExecutionContext) extends Con
   }
 
   def getPlaylistToAdd(song: Long) = Action.async {implicit request =>
-
     PlaylistDAO.getAllRows().map(playlists => {
       val listString = for{
         pl <- playlists
@@ -67,12 +66,18 @@ class PlayListController @Inject()() (implicit ec: ExecutionContext) extends Con
     }
   }
 
-
-
   def addSongtoPlaylist(idSong : Long, idPlayList : Long) = Action.async{ implicit request =>
     PlaylistHasSongDAO.insert(PlaylistHasSong(0,idPlayList,idSong)).map{
       r => Ok(views.html.dummy())
     }
   }
 
+  def getListInMenu() = Action.async{ implicit request =>
+    PlaylistDAO.getAllRows().map(playlists => {
+      val listString = for{
+        pl <- playlists
+      } yield ("<a href='playlist/"+pl.id+"'>"+pl.name+"</a>\n")
+      Ok(views.html.ajaxresponse(listString.fold("")((x: String, y: String) => x + y )))
+    })
+  }
 }

@@ -13,6 +13,10 @@ function playSong(source){
     });
 }
 
+function ajaxmenuplaylist() {
+    $("#Lists").load("menuplaylist");
+}
+
 function ajaxplaylist(song) {
     $("#adding-playlist-"+song).load("addingplaylist/" + song);
 }
