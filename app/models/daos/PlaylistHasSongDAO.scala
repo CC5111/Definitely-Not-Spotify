@@ -1,9 +1,9 @@
 package models.daos
 
 import models.daos.PlaylistDAO._
-import models.entities.{PlaylistHasSong, Songs}
+import models.entities.{PlaylistHasSong}
 import models.persistence.SlickTables
-import models.persistence.SlickTables.{PlaylistHasSongTable, SongsTable}
+import models.persistence.SlickTables.{PlaylistHasSongTable}
 
 import scala.concurrent.Future
 
