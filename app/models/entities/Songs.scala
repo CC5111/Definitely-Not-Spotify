@@ -4,6 +4,6 @@ case class Songs(id: Long, title: String, artist: String, album: String, route: 
 
 case class SongsWithGenre(id: Long, title: String, artist: String, album: String, route: String, genre: String, released: Long)
 
-case class SongsWithGenreAndPL(id: Long, title: String, artist: String, album: String, route: String, genre: String, released: Long, plHasSongId : Long )
+case class SongsWithGenreAndPL(id: Long, title: String, artist: String, album: String, route: String, genre: String, released: Long, plHasSongId : Long, plName: String )
 
 
