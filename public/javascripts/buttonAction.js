@@ -13,6 +13,18 @@ function playSong(source){
     });
 }
 
+function removeSong(source){
+    console.log (source)
+    jQuery(document).ready(function($) {
+        $.get("/playsong/" + source, function(data) {
+            document.getElementById("audio-player").src = data
+            document.getElementById("audio-player").autoplay = true;
+            document.getElementById("audio-player").load()
+        });
+        $("#song-name").load("/getsong/" + source);
+    });
+}
+
 function ajaxmenuplaylist() {
     $("#Lists").load("/menuplaylist");
 }
@@ -22,7 +34,7 @@ function ajaxplaylist(song) {
 }
 
 function addSongToList(song, playlist) {
-    $.get("addsong/"+song+"/"+playlist, function () {
+    $.get("/addsong/"+song+"/"+playlist, function () {
         alert("Canción añadida")
     })
     console.log(playlist);

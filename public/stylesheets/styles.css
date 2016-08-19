@@ -147,7 +147,7 @@ p {
 a { color: #5a9352; text-decoration: none; }
 a:hover { text-decoration: underline; }
 
-.center { display: block; text-align: center; }
+.center {text-align: center; }
 
 /** page structure **/
 #w {
