@@ -1,39 +1,198 @@
 @(listSongs: Seq[models.entities.SongsWithGenre])
 
+<!DOCTYPE html>
+<html lang="en">
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
-<script language="JavaScript" type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/jquery-ui.min.js"></script>
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>Definitely Not Spotify</title>
+
+        <link rel="stylesheet" type="text/css" media="all" href="@routes.Assets.versioned("stylesheets/styles.css")">
+
+            <!-- Bootstrap Core CSS -->
+        <link href="@routes.Assets.versioned("stylesheets/bootstrap.min.css")" rel="stylesheet">
+
+            <!-- Custom CSS -->
+        <link href="@routes.Assets.versioned("stylesheets/simple-sidebar.css")" rel="stylesheet">
+
+            <!-- Audio CSS -->
+
+            <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+            <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+            <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+
+    <![endif]-->
+
+        <script type="text/javascript" src="@routes.Assets.versioned("javascripts/buttonAction.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.versioned("javascripts/jquery-1.10.2.min.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.versioned("javascripts/mediaelement-and-player.min.js")"></script>
+
+    </head>
+
+    <body style="background: #E7E7E7" onload="ajaxmenuplaylist();">
+        <div id="wrapper">
+                <!-- Left Sidebar -->
+            <div id="left-sidebar-wrapper">
+                <ul class="sidebar-nav" style="background: #BFACBD">
+                    <li class="sidebar-brand" style="color: #8A036E">
+                        <h1>Menu</h1>
+                    </li>
+                    <li>
+                        <a data-toggle="collapse" href="#Search" aria-expanded="false">Search <span class="caret"></span></a>
+                        <div class="collapse sub-bar" id="Search">
+                            <form>
+                                <input style="background:#000000; width: 90%;" type="text" class="form-control" placeholder="Name song, artist, genre...">
+                            </form>
+                        </div>
+                    </li>
+                    <li>
+                        <a data-toggle="collapse" href="#Songs" aria-expanded="false">Songs <span class="caret"></span></a>
+                        <div class="collapse sub-bar" id="Songs">
+                            <a href="#">Duration </a>
+                            <a href="#">Artist </a>
+                            <a data-toggle="collapse" href="#Genre" aria-expanded="false">Genre <span class="caret"></span></a>
+                            <div class="collapse sub-bar" id="Genre">
+                                <a href="#">Rock</a>
+                                <a href="#">Pop</a>
+                                <a href="#">Rock</a>
+                                <a href="#">Pop</a>
+                                <a href="#">Rock</a>
+                                <a href="#">Pop</a>
+                                <a href="#">Rock</a>
+                                <a href="#">Pop</a>
+                                <a href="#">Rock</a>
+                                <a href="#">Pop</a>
+                                <a href="#">Rock</a>
+                                <a href="#">Pop</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <a data-toggle="collapse" href="#Lists" aria-expanded="false">Lists <span class="caret"></span></a>
+                        <div class="collapse sub-bar" id="Lists">
+
+                    </div>
+                    </li>
+                    <li>
+                        <a data-toggle="collapse" href="#Radios" aria-expanded="false">Radios <span class="caret"></span></a>
+                        <div class="collapse sub-bar" id="Radios">
+                            <a href="#">RadioA</a>
+                            <a href="#">RadioB</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+                <!-- /#left-sidebar-wrapper -->
+
+                <!-- Footer Sidebar -->
+            <div class="my-panel-group" id="accordion" style="height: 130px">
+                <div class="audio-player" style="background: #BFACBD; width: 700px; margin-top: 25px">
+                    <h2 id="song-name" style="color: #8A036E"></h2>
+                    <audio id="audio-player" src="@routes.Assets.versioned("songs/Welcome.mp3")" type="audio/mp3" controls="controls"></audio>
+                </div><!-- end .audio-player -->
+            </div>
+                <!-- /#right-sidebar-wrapper -->
+
+                <!-- Toggle Buttons -->
+            <a href="#left-menu-toggle" class="btn btn-link btn-md" id="left-menu-toggle" style="background-color: #BFACBD; height: 130px; width: 250px; ">
+                <img src="@routes.Assets.versioned("images/Logo-trans2.png")" width=100px height=100px style="margin-left: -30px">
+            </img>
+            </a>
+
+                <!-- Page Content -->
+            <div id="page-content-wrapper">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div style="overflow-y:scroll; overflow-x:hidden; height:480px;">
+                                <table id="songsTable" class="table table-striped" border="2" style="background: #EABBFA">
+                                    <thead>
+                                        <td><b>Title</b></td>
+                                        <td><b>Artist</b></td>
+                                        <td><b>Album</b></td>
+                                        <td><b>Genre</b></td>
+                                        <td><b>Released</b></td>
+                                        <td><b>Play</b></td>
+                                        <td><b>Add to List</b></td>
+                                    </thead>
+                                    <tbody>
+                                    @for(song <- listSongs){
+                                        <tr>
+                                            <td>@song.title</td>
+                                            <td>@song.artist</td>
+                                            <td>@song.album</td>
+                                            <td>@song.genre</td>
+                                            <td>@song.released</td>
+                                            <td>
+                                                <button onclick='playSong(@song.id)'>
+                                                    <img src="@routes.Assets.versioned("images/Play song.png")" width="20px" height="20px"></img>
+                                                </button>
+                                            </td>
+                                            <td>
+                                                <div class="pull-right">
+                                                    <div class="btn-group">
+                                                        <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="true" onclick="ajaxplaylist(@song.id);">
+                                                            <img src="@routes.Assets.versioned("images/Add to list.png")" width="20px" height="20px"></img>
+                                                            <span class="caret"></span>
+                                                        </button>
+                                                        <ul class="dropdown-menu pull-right" role="menu" id="playlists">
+                                                            <div id="adding-playlist-@song.id"></div>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <!-- /#page-content-wrapper -->
+        </div>
+            <!-- /#wrapper -->
+
+            <!-- jQuery -->
 
 
-<table id="songsTable" border=1>
-    <thead>
-    <td>title</td>
-    <td>artist</td>
-    <td>album</td>
-    <td>genre</td>
-    <td>released</td>
-    </thead>
-    <tbody>
-    @for(song <- listSongs){
-    <tr class='clickable-row' data-href=@song.route>
-        <td>@song.title</td>
-        <td>@song.artist</td>
-        <td>@song.album</td>
-        <td>@song.genre</td>
-        <td>@song.released</td>
-    </tr>
-    }
-    </tbody>
-</table>
-<script>
-    jQuery(document).ready(function($) {
-    $(".clickable-row").click(function() {
-        document.getElementById("player").innerHTML = '<audio autoplay controls src=' + @routes.Assets.versioned("") + $(this).data("href") + '></audio>' ;
+            <!-- Bootstrap Core JavaScript -->
+        <script src="@routes.Assets.versioned("javascripts/bootstrap.min.js")"></script>
+
+            <!-- Menu Toggle Script -->
+        <script>
+    $("#left-menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("left-toggled");
     });
-});
 
-</script>
+    </script>
 
-<div id="player">
-    <audio  controls></audio>
-</div>
+        <script type="text/javascript">
+        $(function(){
+            $('#audio-player').mediaelementplayer({
+                alwaysShowControls: true,
+                features: ['playpause','progress','volume'],
+                audioVolume: 'horizontal',
+                audioWidth: 450,
+                audioHeight: 70,
+                iPadUseNativeControls: true,
+                iPhoneUseNativeControls: true,
+                AndroidUseNativeControls: true,
+                background: 'blue'
+            });
+        });
+    </script>
+
+    </body>
+
+</html>
