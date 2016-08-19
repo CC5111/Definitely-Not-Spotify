@@ -54,26 +54,7 @@
                         </div>
                     </li>
                     <li>
-                        <a data-toggle="collapse" href="#Songs" aria-expanded="false">Songs <span class="caret"></span></a>
-                        <div class="collapse sub-bar" id="Songs">
-                            <a href="#">Duration </a>
-                            <a href="#">Artist </a>
-                            <a data-toggle="collapse" href="#Genre" aria-expanded="false">Genre <span class="caret"></span></a>
-                            <div class="collapse sub-bar" id="Genre">
-                                <a href="#">Rock</a>
-                                <a href="#">Pop</a>
-                                <a href="#">Rock</a>
-                                <a href="#">Pop</a>
-                                <a href="#">Rock</a>
-                                <a href="#">Pop</a>
-                                <a href="#">Rock</a>
-                                <a href="#">Pop</a>
-                                <a href="#">Rock</a>
-                                <a href="#">Pop</a>
-                                <a href="#">Rock</a>
-                                <a href="#">Pop</a>
-                            </div>
-                        </div>
+                        <a href="/">All songs </a>
                     </li>
                     <li>
                         <a data-toggle="collapse" href="#Lists" aria-expanded="false">Lists <span class="caret"></span></a>
@@ -115,39 +96,31 @@
                             <div style="overflow-y:scroll; overflow-x:hidden; height:480px;">
                                 <table id="songsTable" class="table table-striped" border="2" style="background: #EABBFA">
                                     <thead>
+                                        <td><b>Play</b></td>
                                         <td><b>Title</b></td>
                                         <td><b>Artist</b></td>
                                         <td><b>Album</b></td>
                                         <td><b>Genre</b></td>
                                         <td><b>Released</b></td>
-                                        <td><b>Play</b></td>
-                                        <td><b>Add to List</b></td>
+                                        <td><b>Remove</b></td>
                                     </thead>
                                     <tbody>
                                     @for(song <- listSongs){
                                         <tr>
+                                            <td class="center">
+                                                <button onclick='playSong(@song.id)'>
+                                                    <img src="@routes.Assets.versioned("images/Play song.png")" width="20px" height="20px">
+                                                </button>
+                                            </td>
                                             <td>@song.title</td>
                                             <td>@song.artist</td>
                                             <td>@song.album</td>
                                             <td>@song.genre</td>
-                                            <td>@song.released</td>
-                                            <td>
-                                                <button onclick='playSong(@song.id)'>
-                                                    <img src="@routes.Assets.versioned("images/Play song.png")" width="20px" height="20px"></img>
+                                            <td class="center">@song.released</td>
+                                            <td class="center">
+                                                <button onclick='removeSong(@song.id)'>
+                                                    <img src="@routes.Assets.versioned("images/Delete from list.png")" width="20px" height="20px">
                                                 </button>
-                                            </td>
-                                            <td>
-                                                <div class="pull-right">
-                                                    <div class="btn-group">
-                                                        <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="true" onclick="ajaxplaylist(@song.id);">
-                                                            <img src="@routes.Assets.versioned("images/Add to list.png")" width="20px" height="20px"></img>
-                                                            <span class="caret"></span>
-                                                        </button>
-                                                        <ul class="dropdown-menu pull-right" role="menu" id="playlists">
-                                                            <div id="adding-playlist-@song.id"></div>
-                                                        </ul>
-                                                    </div>
-                                                </div>
                                             </td>
                                         </tr>
                                     }
