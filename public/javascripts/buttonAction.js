@@ -2,7 +2,6 @@
  * Created by Blopa on 18-08-2016.
  */
 function playSong(source){
-    console.log (source)
     jQuery(document).ready(function($) {
         $.get("/playsong/" + source, function(data) {
             document.getElementById("audio-player").src = data
@@ -14,14 +13,10 @@ function playSong(source){
 }
 
 function removeSong(source){
-    console.log (source)
     jQuery(document).ready(function($) {
-        $.get("/playsong/" + source, function(data) {
-            document.getElementById("audio-player").src = data
-            document.getElementById("audio-player").autoplay = true;
-            document.getElementById("audio-player").load()
+        $.get("/remove/" + source, function() {
+            location.reload();
         });
-        $("#song-name").load("/getsong/" + source);
     });
 }
 

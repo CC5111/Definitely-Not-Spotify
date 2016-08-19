@@ -1,7 +1,7 @@
 @(listSongs: Seq[models.entities.SongsWithGenre])
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="overflow: hidden">
 
 <head>
 
@@ -118,13 +118,13 @@
                                     <td>@song.genre</td>
                                     <td>@song.released</td>
                                     <td class="center">
-                                        <div class="btn-group">
-                                            <button  type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="true" onclick="ajaxplaylist(@song.id);">
+                                        <div class="dropdown">
+                                            <button  type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="true" onclick="ajaxplaylist(@song.id);" style="background-color: #F1F1F1">
                                                 <img src="@routes.Assets.versioned("images/Add to list.png")" width="20px" height="20px"></img>
                                                 <span class="caret" ></span>
                                             </button>
-                                            <ul class="dropdown-menu pull-right" role="menu" id="playlists">
-                                                <div id="adding-playlist-@song.id"></div>
+                                            <ul class="dropdown-menu pull-right" role="menu" id="playlists" style="padding: 0px; cursor: pointer; cursor: hand">
+                                                <div class="dropdown-content" id="adding-playlist-@song.id"></div>
                                             </ul>
                                         </div>
                                     </td>
