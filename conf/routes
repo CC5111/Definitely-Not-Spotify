@@ -7,6 +7,7 @@
 GET     /                           controllers.SongsController.showSongs
 GET     /playsong/:id               controllers.SongsController.reproduceSong(id: Long)
 GET     /getsong/:id                controllers.SongsController.getSongName(id: Long)
+GET     /searchsong                 controllers.SongsController.searchSong(keyword: String)
 GET     /songs                      controllers.NotSpotifyController.root
 GET     /playlist                   controllers.PlayListController.playlist
 POST    /createplaylist             controllers.PlayListController.createPlaylist

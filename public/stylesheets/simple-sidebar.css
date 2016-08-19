@@ -211,24 +211,17 @@ li > .sub-bar {
 @media(min-width:768px) {
     #wrapper {
         padding-left: 250px;
-        padding-right: 250px;
+        padding-right: 19.5%;
     }
 
     #wrapper.left-toggled {
         padding-left: 0;
     }
 
-    #wrapper.right-toggled {
-        padding-right: 0;
-    }
-
     #left-sidebar-wrapper {
         width: 250px;
     }
 
-    #right-sidebar-wrapper {
-        width: 250px;
-    }
 
     #wrapper.left-toggled #left-sidebar-wrapper {
         width: 0;

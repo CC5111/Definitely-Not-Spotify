@@ -48,8 +48,8 @@
                 <li>
                     <a data-toggle="collapse" href="#Search" aria-expanded="false">Search <span class="caret"></span></a>
                     <div class="collapse sub-bar" id="Search">
-                        <form>
-                            <input style="background:#000000; width: 90%;" type="text" class="form-control" placeholder="Name song, artist, genre..." action="./searchSong" name="keyword">
+                        <form action="/searchsong" method="GET">
+                            <input style="background:#000000; width: 90%;" type="text" class="submit_on_enter" placeholder="Name song, artist, genre..." name="keyword">
                         </form>
                     </div>
                 </li>
@@ -74,8 +74,8 @@
         <!-- /#left-sidebar-wrapper -->
 
         <!-- Footer Sidebar -->
-        <div class="my-panel-group" id="accordion" style="height: 130px">
-            <div class="audio-player" style="background: #BFACBD; width: 700px; margin-top: 25px">
+        <div class="my-panel-group" id="accordion" style="height: 19.5%">
+            <div class="audio-player" style="background: #BFACBD; width: 700px; margin-top: 3.8%">
                 <h2 id="song-name" style="color: #8A036E"></h2>
                 <audio id="audio-player" src="@routes.Assets.versioned("songs/Welcome.mp3")" type="audio/mp3" controls="controls"></audio>
             </div><!-- end .audio-player -->
@@ -83,8 +83,8 @@
         <!-- /#right-sidebar-wrapper -->
 
         <!-- Toggle Buttons -->
-        <a href="#left-menu-toggle" class="btn btn-link btn-md" id="left-menu-toggle" style="background-color: #BFACBD; height: 130px; width: 250px; ">
-            <img src="@routes.Assets.versioned("images/Logo-trans2.png")" width=100px height=100px style="margin-left: -30px">
+        <a href="#left-menu-toggle" class="btn btn-link btn-md" id="left-menu-toggle" style="background-color: #BFACBD; height: 19.5%; width: 250px; ">
+            <img src="@routes.Assets.versioned("images/Logo-trans2.png")" width=60% height=80% style=" margin-top: 15%">
             </img>
         </a>
 
@@ -171,6 +171,17 @@
             });
         });
     </script>
+
+    <script type="text/javascript">
+  $(document).ready(function() {
+    $('.submit_on_enter').keydown(function(event) {
+        if (event.keyCode == 13) {
+            this.form.submit();
+            return false;
+         }
+    });
+  });
+</script>
 
 </body>
 

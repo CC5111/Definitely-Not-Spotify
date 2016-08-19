@@ -43,9 +43,8 @@ class SongsController @Inject()() (implicit ec: ExecutionContext) extends Contro
       Ok(views.html.index(songList))})
   }
 
-  def searchSong() = Action.async{implicit request =>
-    val keyWord : String = request.body.asFormUrlEncoded.get("keyword")(0)
-    println("mu")
+  def searchSong(keyword: String) = Action.async{implicit request =>
+    val keyWord : String = keyword
     SongsDAO.getSongsWithGenre().map( songs => {
       val songList = for (song <- songs) yield SongsWithGenre(song._1,song._2,song._3,song._4,song._5,song._6, song._7)
       val songFinded: Seq[SongsWithGenre] = for {
@@ -60,8 +59,8 @@ class SongsController @Inject()() (implicit ec: ExecutionContext) extends Contro
   private def isSimilar(s1 :String, s2:String): Boolean= {
     def max(s1 :String, s2:String) : String = if (s1.length > s2.length) s1 else s2
     def min(s1 :String, s2:String) : String = if (s1.length > s2.length) s2 else s1
-    val longer :String = max(s1,s2)
-    val shorter :String = min(s1,s2)
+    val longer :String = max(s1,s2).toLowerCase
+    val shorter :String = min(s1,s2).toLowerCase
     if (longer.length == 0) true
     else (longer.length - Levenshtein.distance(longer, shorter)) / longer.length.toDouble >= 0.75
   }
