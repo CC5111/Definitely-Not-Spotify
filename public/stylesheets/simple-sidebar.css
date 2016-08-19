@@ -24,12 +24,11 @@
 }
 
 #left-sidebar-wrapper {
-    z-index: 1000;
+    z-index: 1;
     position: fixed;
     left: 250px;
     width: 0;
-    height: 100%;
-    bottom: -0px;
+    height: 80.5%;
     margin-left: -250px;
     overflow-y: auto;
     overflow-x: hidden;
@@ -39,33 +38,17 @@
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
 }
-
-#right-sidebar-wrapper {
-    z-index: 1000;
-    position: fixed;
-    right: 250px;
-    width: 0;
-    height: 100%;
-    margin-right: -250px;
-    overflow-y: auto;
-    background: #BFACBD;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
-}
 #accordion {
     position: fixed;
-    bottom: 0;
     width: 100%;
     background-color: #BFACBD;
 }
 
 #my-panel-group{
     .panel-group{
-    margin-bottom: 0px;
-}
-}
+        margin-top: 0px;
+        }
+    }
 audio
 {
     -webkit-transition:all 0.5s linear;

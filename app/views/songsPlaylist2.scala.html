@@ -72,29 +72,13 @@
                 </ul>
             </div>
                 <!-- /#left-sidebar-wrapper -->
-
-                <!-- Footer Sidebar -->
-            <div class="my-panel-group" id="accordion" style="height: 130px">
-                <div class="audio-player" style="background: #BFACBD; width: 700px; margin-top: 25px">
-                    <h2 id="song-name" style="color: #8A036E"></h2>
-                    <audio id="audio-player" src="@routes.Assets.versioned("songs/Welcome.mp3")" type="audio/mp3" controls="controls"></audio>
-                </div><!-- end .audio-player -->
-            </div>
-                <!-- /#right-sidebar-wrapper -->
-
-                <!-- Toggle Buttons -->
-            <a href="#left-menu-toggle" class="btn btn-link btn-md" id="left-menu-toggle" style="background-color: #BFACBD; height: 130px; width: 250px; ">
-                <img src="@routes.Assets.versioned("images/Logo-trans2.png")" width=100px height=100px style="margin-left: -30px">
-            </img>
-            </a>
-
                 <!-- Page Content -->
             <div id="page-content-wrapper">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
                             <h1 style="margin-top: 0px">@playlistName</h1>
-                            <div style="overflow-y:auto; overflow-x:hidden; height:480px;">
+                            <div style="overflow-y:auto; overflow-x:hidden; height:440px;">
                                 <table id="songsTable" class="table table-striped" border="2" style="background: #EABBFA">
                                     <thead>
                                         <td><b>Play</b></td>
@@ -135,6 +119,18 @@
                 <!-- /#page-content-wrapper -->
         </div>
             <!-- /#wrapper -->
+        <div class="my-panel-group" id="accordion" style="height: 19.5%">
+            <div class="audio-player" style="background: #BFACBD; width: 50%; margin-top: 2%; margin-right: 30%; margin-left: 30%">
+                <h2 id="song-name" style="color: #8A036E"></h2>
+                <audio id="audio-player" src="@routes.Assets.versioned("songs/Welcome.mp3")" type="audio/mp3" controls="controls"></audio>
+            </div><!-- end .audio-player -->
+        </div>
+
+            <!-- Toggle Buttons -->
+        <a href="#left-menu-toggle" class="btn btn-link btn-md" id="left-menu-toggle" style="height: 19.5%; width: 15%; ">
+            <img src="@routes.Assets.versioned("images/Logo-trans2.png")" width=100px height=100px style=" margin-top: 10%; margin-bottom: 15%">
+            </img>
+        </a>
 
             <!-- jQuery -->
 
