@@ -12,6 +12,8 @@ POST    /createplaylist              controllers.PlayListController.createPlayli
 GET     /supplier/:id                controllers.SuppliersController.supplier(id : Long)
 POST    /supplier                    controllers.SuppliersController.insertSupplier
 GET     /playlist/:id          controllers.PlayListController.showPlaylist(id : Long)
+GET     /addingplaylist/:song        controllers.PlayListController.getPlaylistToAdd(song: Long)
+GET     /addsong/:song/:list         controllers.PlayListController.addSongtoPlaylist(song: Long, list: Long)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

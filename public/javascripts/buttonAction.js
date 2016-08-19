@@ -12,8 +12,16 @@ function playSong(source){
         $("#song-name").load("getsong/" + source);
     });
 }
-function myFunction() {
-    document.getElementById("myDropdown").classList.toggle("show");
+
+function ajaxplaylist(song) {
+    $("#adding-playlist-"+song).load("addingplaylist/" + song);
+}
+
+function addSongToList(song, playlist) {
+    $.get("addsong/"+song+"/"+playlist, function () {
+        alert("Canción añadida")
+    })
+    console.log(playlist);
 }
 
 // Close the dropdown menu if the user clicks outside of it

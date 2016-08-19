@@ -133,10 +133,22 @@
                                     <td>@song.genre</td>
                                     <td>@song.released</td>
                                     <td>
-                                        <button onclick='playSong($(this).data("href"))' data-href=@song.id ><img src="@routes.Assets.versioned("images/Play song.png")" width="20px" height="20px"></img></button>
+                                        <button onclick='playSong(@song.id)'>
+                                            <img src="@routes.Assets.versioned("images/Play song.png")" width="20px" height="20px"></img>
+                                        </button>
                                     </td>
                                     <td>
-                                        <button onclick='addToList($(this).data("href") )' ><img src="@routes.Assets.versioned("images/Add to list.png")" width="20px" height="20px"></img></button>
+                                        <div class="pull-right">
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="true" onclick="ajaxplaylist(@song.id);">
+                                                    <img src="@routes.Assets.versioned("images/Add to list.png")" width="20px" height="20px"></img>
+                                                    <span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu pull-right" role="menu" id="playlists">
+                                                    <div id="adding-playlist-@song.id"></div>
+                                                </ul>
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
                             }

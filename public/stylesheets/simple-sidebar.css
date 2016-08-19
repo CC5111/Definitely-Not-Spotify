@@ -253,3 +253,24 @@ li > .sub-bar {
         margin-left: 0;
     }
 }
+
+.profile_dropdown
+{
+    height:20px;
+    weight:20px;
+    position:static;
+
+}
+#menu ul .item
+{
+    display: none;
+    text-decoration: none;
+    background: #222222 85% 55% no-repeat;
+    font-family: 'Century Gothic';
+    font-size: large;
+    font-weight: bold;
+    color: #9FC54E;
+    white-space: nowrap;
+}
+#menu ul:hover .item{display:block;}
+#menu{margin-top:-22px;position:fixed}

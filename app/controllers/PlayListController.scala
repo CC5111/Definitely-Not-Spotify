@@ -2,7 +2,7 @@ package controllers
 
 import javax.inject.{Inject, Singleton}
 
-import models.daos.{GenreDAO, PlaylistDAO, PlaylistHasSongDAO, AbstractBaseDAO}
+import models.daos.{SongsDAO, GenreDAO, PlaylistDAO, PlaylistHasSongDAO, AbstractBaseDAO}
 import models.persistence.SlickTables.{GenreTable, PlaylistHasSongTable, PlaylistTable, SongsTable}
 
 import play.api.mvc._
@@ -36,9 +36,14 @@ class PlayListController @Inject()() (implicit ec: ExecutionContext) extends Con
     })
   }
 
-  def selectPlaylist(id: Long) = Action{ implicit request =>
-    // TODO
-    Ok(views.html.dummy())
+  def getPlaylistToAdd(song: Long) = Action.async {implicit request =>
+
+    PlaylistDAO.getAllRows().map(playlists => {
+      val listString = for{
+        pl <- playlists
+      } yield ("<li><a onclick='addSongToList("+song+","+pl.id+");'>"+ pl.name + "</a></li>\n")
+      Ok(views.html.ajaxresponse(listString.fold("")((x: String, y: String) => x + y )))
+    })
   }
 
   def createPlaylist() = Action.async{ implicit request =>
@@ -64,8 +69,10 @@ class PlayListController @Inject()() (implicit ec: ExecutionContext) extends Con
 
 
 
-  def addSongtoPlaylist(idSong : Long, idPlayList : Long) = {
-    PlaylistHasSongDAO.insert(PlaylistHasSong(0,idSong,idPlayList))
+  def addSongtoPlaylist(idSong : Long, idPlayList : Long) = Action.async{ implicit request =>
+    PlaylistHasSongDAO.insert(PlaylistHasSong(0,idPlayList,idSong)).map{
+      r => Ok(views.html.dummy())
+    }
   }
 
 }
