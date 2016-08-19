@@ -47,12 +47,18 @@ class SongsController @Inject()() (implicit ec: ExecutionContext) extends Contro
     SongsDAO.getSongsWithGenre().map( songs => {
       val songList = for (song <- songs) yield SongsWithGenre(song._1,song._2,song._3,song._4,song._5,song._6, song._7)
       val songFinded: Seq[SongsWithGenre] = for {
-        song <- songList if song.title == keyWord || song.album == keyWord || song.artist == keyWord || song.genre == keyWord || song.released == keyWord.toLong
+        song <- songList if song.title == keyWord || song.album == keyWord || song.artist == keyWord || song.genre == keyWord || song.released == toLong(keyWord).orElse[Long](Some(-1.toLong))
       } yield song
       Ok(views.html.index(songFinded))})
   }
 
-
+  private def toLong(s: String): Option[Long] = {
+    try {
+      Some(s.toLong)
+    } catch {
+      case e: Exception => None
+    }
+  }
 
 
 }
