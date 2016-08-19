@@ -80,7 +80,7 @@ class PlayListController @Inject()() (implicit ec: ExecutionContext) extends Con
       val listString = for{
         pl <- playlists
       } yield ("<a href='/playlist/"+pl.id+"'>"+pl.name+"</a>\n")
-      Ok(views.html.ajaxresponse(listString.fold("<div><form method=\"POST\" id=\"new\" action=\"./createplaylist\"><input type=\"text\" style=\"background:#000000; width: 90%;\" name=\"name\" placeholder=\"New List\"></div>")((x: String, y: String) => x + y )))
+      Ok(views.html.ajaxresponse(listString.fold("<div><form method=\"POST\" id=\"new\" action=\"./createplaylist\"><input type=\"text\" style=\"background:#000000;color : #ffffff; width: 90%;\" name=\"name\" placeholder=\"New List\"></div>")((x: String, y: String) => x + y )))
     })
   }
 

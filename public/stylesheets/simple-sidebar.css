@@ -29,6 +29,7 @@
     left: 250px;
     width: 0;
     height: 100%;
+    bottom: -0px;
     margin-left: -250px;
     overflow-y: auto;
     overflow-x: hidden;
@@ -142,6 +143,8 @@ audio
     margin: 0;
     padding: 0;
     list-style: none;
+    height: 80.5%;
+    max-height: 80.5%;
 }
 
 .sidebar-nav li {
