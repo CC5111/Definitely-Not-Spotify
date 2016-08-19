@@ -80,4 +80,11 @@ class PlayListController @Inject()() (implicit ec: ExecutionContext) extends Con
       Ok(views.html.ajaxresponse(listString.fold("")((x: String, y: String) => x + y )))
     })
   }
+
+  def removeFromPlaylist(id: Long) = Action.async{ implicit request =>
+    println("deleting "+id)
+    PlaylistHasSongDAO.deleteById(id).map{
+      r => Ok(views.html.dummy())
+    }
+  }
 }
